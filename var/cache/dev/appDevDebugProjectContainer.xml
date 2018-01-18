@@ -28,7 +28,7 @@
     <parameter key="database_port">3306</parameter>
     <parameter key="database_name">tobat</parameter>
     <parameter key="database_user">root</parameter>
-    <parameter key="database_password">rot</parameter>
+    <parameter key="database_password">root</parameter>
     <parameter key="mailer_transport">smtp</parameter>
     <parameter key="mailer_host">127.0.0.1</parameter>
     <parameter key="mailer_user">null</parameter>
@@ -1507,7 +1507,7 @@
       <argument type="collection">
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>5a605c940e7e98.88934232</argument>
+            <argument>5a6070d7921cb3.74360455</argument>
           </service>
         </argument>
       </argument>
@@ -1636,7 +1636,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>5a605c940e7e98.88934232</argument>
+            <argument>5a6070d7921cb3.74360455</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -1938,7 +1938,7 @@
         <argument key="port">3306</argument>
         <argument key="dbname">tobat</argument>
         <argument key="user">root</argument>
-        <argument key="password">rot</argument>
+        <argument key="password">root</argument>
         <argument key="charset">UTF8</argument>
         <argument key="driverOptions" type="collection"/>
         <argument key="defaultTableOptions" type="collection"/>
@@ -2023,7 +2023,9 @@
       <argument type="service">
         <service class="Doctrine\ORM\Configuration" public="false">
           <call method="setEntityNamespaces">
-            <argument type="collection"/>
+            <argument type="collection">
+              <argument key="TobatBundle">TobatBundle\Entity</argument>
+            </argument>
           </call>
           <call method="setMetadataCacheImpl">
             <argument type="service" id="doctrine_cache.providers.doctrine.orm.default_metadata_cache"/>
@@ -2036,7 +2038,19 @@
           </call>
           <call method="setMetadataDriverImpl">
             <argument type="service">
-              <service class="Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain" public="false"/>
+              <service class="Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain" public="false">
+                <call method="addDriver">
+                  <argument type="service">
+                    <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
+                      <argument type="service" id="annotation_reader"/>
+                      <argument type="collection">
+                        <argument>/Users/Augustin.dlt/Documents/Cours/PPE/Tobat/symfony/Tobat/src/TobatBundle/Entity</argument>
+                      </argument>
+                    </service>
+                  </argument>
+                  <argument>TobatBundle\Entity</argument>
+                </call>
+              </service>
             </argument>
           </call>
           <call method="setProxyDir">

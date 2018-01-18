@@ -109,6 +109,19 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'TobatBundle\\Controller\\DefaultController::indexAction',  '_route' => 'tobat_homepage',);
         }
 
+        if (0 === strpos($pathinfo, '/client')) {
+            // index_client
+            if ($pathinfo === '/clients') {
+                return array (  '_controller' => 'TobatBundle\\Controller\\ClientController::indexAction',  '_route' => 'index_client',);
+            }
+
+            // ajout_commentaire
+            if (preg_match('#^/client/(?P<id>[^/]++)/ajout/commentaire$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'ajout_commentaire')), array (  '_controller' => 'TobatBundle\\Controller\\ClientController::ajoutCommentaireAction',));
+            }
+
+        }
+
         // homepage
         if (rtrim($pathinfo, '/') === '') {
             if (substr($pathinfo, -1) !== '/') {

@@ -1,3 +1,11 @@
 tobat_homepage:
     path:     /
     defaults: { _controller: TobatBundle:Default:index }
+
+index_client:
+    path:     /clients
+    defaults: { _controller: TobatBundle:Client:index }
+
+ajout_commentaire:
+    path:     /client/{id}/ajout/commentaire
+    defaults: { _controller: TobatBundle:Client:ajoutCommentaire }
