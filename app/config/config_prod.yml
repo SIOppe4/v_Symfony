@@ -1,10 +1,11 @@
 imports:
     - { resource: config.yml }
 
-#framework:
+framework:
 #    validation:
 #        cache: validator.mapping.cache.doctrine.apc
-#    serializer:
+    serializer:
+        enabled: true
 #        cache: serializer.mapping.cache.apc
 
 #doctrine:

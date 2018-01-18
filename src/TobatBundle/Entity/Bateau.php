@@ -31,6 +31,13 @@ class Bateau
     /**
      * @var string
      *
+     * @ORM\Column(name="img", type="string", length=255)
+     */
+    private $img;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="prix", type="string", length=255)
      */
     private $prix;
@@ -218,4 +225,3 @@ class Bateau
         return $this->etat;
     }
 }
-
