@@ -9,3 +9,7 @@ index_client:
 ajout_commentaire:
     path:     /client/{id}/ajout/commentaire
     defaults: { _controller: TobatBundle:Client:ajoutCommentaire }
+
+ajout_bateau_client:
+    path:     /client/{id_client}/ajout/bateau/{id_bateau}
+    defaults: { _controller: TobatBundle:Client:ajoutBateauClient }

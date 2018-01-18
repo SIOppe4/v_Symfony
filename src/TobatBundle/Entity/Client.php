@@ -337,9 +337,9 @@ class Client
      *
      * @return Client
      */
-    public function setBateau($bateau)
+    public function setBateau(Bateau $bateau = null)
     {
-        $this->bateau = $bateau;
+        $this->bateau[] = $bateau;
 
         return $this;
     }

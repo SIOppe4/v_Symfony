@@ -5,6 +5,7 @@ namespace TobatBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use TobatBundle\Entity\Client;
+use TobatBundle\Entity\Bateau;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\Serializer;
@@ -41,6 +42,25 @@ class ClientController extends Controller
         $client->setCommentaire($comment);
         $manager->persist($client);
         $manager->flush();
+        return new Response($serializer->serialize($client, 'json'));
+    }
+
+    public function ajoutBateauClientAction($id_client, $id_bateau){
+        $serializer = $this->getSerializable();
+        $manager = $this->getDoctrine()->getManager();
+
+        $client = $manager->getRepository(Client::class)->find($id_client);
+        $bateau = $manager->getRepository(Bateau::class)->find($id_bateau);
+
+        // Si le bateau est déjà afilier au client ou plus de 3
+        if ($client->getBateau()->contains($bateau) || count($client->getBateau()) > 3) {
+            throw new \Exception("Impossible d'ajouter ce bateau", 1);
+        }
+
+        $client->setBateau($bateau);
+        $manager->persist($client);
+        $manager->flush();
+
         return new Response($serializer->serialize($client, 'json'));
     }
 

@@ -120,6 +120,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'ajout_commentaire')), array (  '_controller' => 'TobatBundle\\Controller\\ClientController::ajoutCommentaireAction',));
             }
 
+            // ajout_bateau_client
+            if (preg_match('#^/client/(?P<id_client>[^/]++)/ajout/bateau/(?P<id_bateau>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'ajout_bateau_client')), array (  '_controller' => 'TobatBundle\\Controller\\ClientController::ajoutBateauClientAction',));
+            }
+
         }
 
         // homepage
