@@ -13,3 +13,7 @@ ajout_commentaire:
 ajout_bateau_client:
     path:     /client/{id_client}/ajout/bateau/{id_bateau}
     defaults: { _controller: TobatBundle:Client:ajoutBateauClient }
+
+afficher_client:
+    path:     /client/{id_client}
+    defaults: {_controller:TobatBundle:Client:afficherClient}

@@ -64,4 +64,12 @@ class ClientController extends Controller
         return new Response($serializer->serialize($client, 'json'));
     }
 
+    public function afficherClientAction($id_client){
+
+        $serializer = $this->getSerializable();
+        $manager = $this->getDoctrine()->getManager();
+        $client = $manager->getRepository(Client::class)->find($id_client);
+        return new Response($serializer->serialize($client, 'json'));
+    }
+
 }
