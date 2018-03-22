@@ -343,4 +343,18 @@ class Client
 
         return $this;
     }
+
+    public function setInformations($informations){
+        if (isset($informations['nom'])) $this->nom = $informations['nom'];   
+        if (isset($informations['prenom'])) $this->prenom = $informations['prenom'];
+        if (isset($informations['adresse'])) $this->adresse = $informations['adresse'];
+        if (isset($informations['adresse_ln'])) $this->adresse_ln = $informations['adresse_ln'];
+        if (isset($informations['ville'])) $this->ville = $informations['ville'];
+        if (isset($informations['cp'])) $this->cp = $informations['cp'];
+        if (isset($informations['tel'])) $this->tel = $informations['tel'];
+        if (isset($informations['commentaire'])) $this->commentaire = $informations['commentaire'];
+        if (isset($informations['email'])) $this->email = $informations['email'];
+
+        return $this;
+    }
 }

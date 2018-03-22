@@ -72,4 +72,23 @@ class ClientController extends Controller
         return new Response($serializer->serialize($client, 'json'));
     }
 
+    public function updateClientAction(Request $request, $id_client){
+        $serializer = $this->getSerializable();
+        $manager = $this->getDoctrine()->getManager();
+        $client = $manager->getRepository(Client::class)->find($id_client);
+        $informations = json_decode($request->getContent(), true);
+        $client->setInformations($informations);
+        $manager->persist($client);
+        $manager->flush();
+        return new Response($serializer->serialize($client, 'json'));
+    }
+
+    public function deleteClientAction($id_client){
+        $serializer = $this->getSerializable();
+        $manager = $this->getDoctrine()->getManager();
+        $client = $manager->getRepository(Client::class)->find($id_client);
+        $manager->remove($client);
+        $manager->flush();
+         return new Response($serializer->serialize("Suppression effectuée", 'json'));
+    }
 }
