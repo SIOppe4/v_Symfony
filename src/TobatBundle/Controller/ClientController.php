@@ -24,9 +24,10 @@ class ClientController extends Controller
 
     public function indexAction()
     {
-        return $this->render('TobatBundle:Client:index.html.twig', array(
-            // ...
-        ));
+        $serializer = $this->getSerializable();
+        $manager = $this->getDoctrine()->getManager();
+        $clients['clients'] = $manager->getRepository(Client::class)->findAll();
+        return new Response($serializer->serialize($clients, 'json'));
     }
 
     public function ajoutCommentaireAction(Request $request, $id)
