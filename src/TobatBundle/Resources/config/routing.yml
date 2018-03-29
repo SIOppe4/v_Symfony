@@ -25,3 +25,7 @@ update_client:
 delete_client:
     path:     /client/{id_client}/delete
     defaults: {_controller:TobatBundle:Client:deleteClient}
+
+index_bateau:
+    path:     /bateaux
+    defaults: {_controller:TobatBundle:Bateau:index}
