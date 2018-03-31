@@ -65,6 +65,25 @@ class ClientController extends Controller
         return new Response($serializer->serialize($client, 'json'));
     }
 
+    public function supressionBateauClientAction($id_client, $id_bateau){
+        $serializer = $this->getSerializable();
+        $manager = $this->getDoctrine()->getManager();
+
+        $client = $manager->getRepository(Client::class)->find($id_client);
+        $bateau = $manager->getRepository(Bateau::class)->find($id_bateau);
+
+        // Si le bateau n'est pas déjà afilier au client
+        if (!$client->getBateau()->contains($bateau)) {
+            throw new \Exception("Impossible d'ajouter ce bateau", 1);
+        }
+
+        $client->getBateau()->removeElement($bateau);
+        $manager->persist($client);
+        $manager->flush();
+
+        return new Response($serializer->serialize($client, 'json'));
+    }
+
     public function afficherClientAction($id_client){
 
         $serializer = $this->getSerializable();

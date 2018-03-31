@@ -14,6 +14,10 @@ ajout_bateau_client:
     path:     /client/{id_client}/ajout/bateau/{id_bateau}
     defaults: { _controller: TobatBundle:Client:ajoutBateauClient }
 
+supression_bateau_client:
+    path:     /client/{id_client}/supression/bateau/{id_bateau}
+    defaults: { _controller: TobatBundle:Client:supressionBateauClient }
+
 afficher_client:
     path:     /client/{id_client}
     defaults: {_controller:TobatBundle:Client:afficherClient}
