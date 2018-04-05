@@ -33,3 +33,7 @@ delete_client:
 index_bateau:
     path:     /bateaux
     defaults: {_controller:TobatBundle:Bateau:index}
+    
+ajout_client:
+    path:     /client/new/client
+    defaults: {_controller:TobatBundle:Client:ajoutClient}

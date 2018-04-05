@@ -111,4 +111,41 @@ class ClientController extends Controller
         $manager->flush();
          return new Response($serializer->serialize("Suppression effectuée", 'json'));
     }
+
+    public function ajoutClientAction(Request $request){
+
+        $serializer = $this->getSerializable();
+        $manager = $this->getDoctrine()->getManager();
+
+        $client = new client;
+
+        $nom = json_decode($request->getContent(), true)['nom'];
+        $prenom = json_decode($request->getContent(), true)['prenom'];
+        $adresse = json_decode($request->getContent(), true)['adresse'];
+        $adresseLn = json_decode($request->getContent(), true)['adresseLn'];
+        $ville = json_decode($request->getContent(), true)['ville'];
+        $cp = json_decode($request->getContent(), true)['cp'];
+        $commentaire = json_decode($request->getContent(), true)['commentaire'];
+        $tel = json_decode($request->getContent(), true)['tel'];
+        $email = json_decode($request->getContent(), true)['email'];
+
+
+        $client->setNom($nom);
+        $client->setPrenom($prenom);
+        $client->setAdresse($adresse);
+        $client->setAdresseLn($adresseLn);
+        $client->setVille($ville);
+        $client->setCp($cp);
+        $client->setCommentaire($commentaire);
+        $client->setTel($tel);
+        $client->setEmail($email);
+
+        $manager->persist($client);
+        $manager->flush();
+
+        var_dump($client);
+
+        return new Response($serializer->serialize($client, 'json'));
+    }
+
 }
