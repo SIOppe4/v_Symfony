@@ -1,0 +1,51 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Liste des clients{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <br>
+        <h1>Liste des bateaux</h1>
+        <br>
+
+        <table class="table table-striped">
+            <thead class="bg-info" style="color: white">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Année</th>
+                <th scope="col">Modèle</th>
+                <th scope="col">Etat</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for bateau in bateaux %}
+                <tr>
+                    <th scope="row">{{ bateau.id }}</th>
+                    <td>{{ bateau.nom }}</td>
+                    <td>{{ bateau.prix }}</td>
+                    <td>{{ bateau.annee }}</td>
+                    <td>{{ bateau.modele }}</td>
+                    <td>{{ bateau.etat }}</td>
+                    <td>
+                        <a href="{{ path('modifiction_bateau_admin',{ 'id_bateau': bateau.id }) }}" class="btn btn-outline-warning">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <a href="{{ path('supression_bateau_admin',{ 'id_bateau': bateau.id }) }}" class="btn btn-outline-danger" onclick="return confirm('Êtes-vous sûre de vouloir supprimer ce bateau ?');">
+                            <i class="fa fa-remove"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+        <div class="row justify-content-end">
+            <a href="{{ path('ajout_bateau_admin') }}" class="btn btn-info right" style="margin-right: 30px">Ajouter un bateau</a>
+            <a href="{{ path('clients_admin') }}" class="btn btn-info right">Voir les clients</a>
+        </div>
+    </div>
+
+{% endblock %}

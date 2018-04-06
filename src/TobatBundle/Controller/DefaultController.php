@@ -8,6 +8,6 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('TobatBundle:Default:index.html.twig');
+        return $this->redirectToRoute('clients_admin');
     }
 }

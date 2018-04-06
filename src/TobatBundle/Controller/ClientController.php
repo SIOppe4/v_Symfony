@@ -16,6 +16,13 @@ use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 class ClientController extends Controller
 {
 
+    public function __construct()
+    {
+        if (empty($_GET['key']) || $_GET['key'] != "a46c7c91-2b3c-4392-915e-e2a548b9ed49"){
+            throw new \Exception("Vous n'avez pas le droit d'acceder à cette page", 302);
+        }
+    }
+
     private function getSerializable(){
         $encoders = array(new XmlEncoder(), new JsonEncoder());
         $normalizers = array(new GetSetMethodNormalizer());

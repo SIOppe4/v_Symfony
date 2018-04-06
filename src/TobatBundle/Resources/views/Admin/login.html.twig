@@ -1,0 +1,35 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Ajout d'un bateau{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <br>
+
+        <div class="row">
+            <div class="col-sm-5 offset-sm-3">
+                <center>
+                    <h2>CONNEXION</h2>
+                    <br>
+                </center>
+
+                <form method="post">
+                    <div class="form-group">
+                        <input type="text" name="username" class="form-control" placeholder="Entrez votre identifiant" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" class="form-control" placeholder="Entrez votre mot de passe" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary" value="Me Connecter">
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}

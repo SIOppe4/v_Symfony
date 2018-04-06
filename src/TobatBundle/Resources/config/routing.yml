@@ -37,3 +37,27 @@ index_bateau:
 ajout_client:
     path:     /client/new/client
     defaults: {_controller:TobatBundle:Client:ajoutClient}
+
+login_admin:
+    path:     /admin/login
+    defaults: { _controller: TobatBundle:Auth:login }
+
+clients_admin:
+    path:     /admin/clients
+    defaults: { _controller: TobatBundle:Admin:clients }
+
+bateaux_admin:
+    path:     /admin/bateaux
+    defaults: { _controller: TobatBundle:Admin:bateaux }
+
+ajout_bateau_admin:
+    path:     /admin/bateaux/ajout
+    defaults: { _controller: TobatBundle:Admin:ajoutBateau }
+
+modifiction_bateau_admin:
+    path:     /admin/bateaux/modification/{id_bateau}
+    defaults: { _controller: TobatBundle:Admin:modifBateau }
+
+supression_bateau_admin:
+    path:     /admin/bateaux/suppression/{id_bateau}
+    defaults: { _controller: TobatBundle:Admin:suppressionBateau }
