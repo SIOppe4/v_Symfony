@@ -149,9 +149,6 @@ class ClientController extends Controller
 
         $manager->persist($client);
         $manager->flush();
-
-        var_dump($client);
-
         return new Response($serializer->serialize($client, 'json'));
     }
 
