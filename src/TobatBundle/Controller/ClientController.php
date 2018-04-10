@@ -61,7 +61,7 @@ class ClientController extends Controller
         $bateau = $manager->getRepository(Bateau::class)->find($id_bateau);
 
         // Si le bateau est déjà afilier au client ou plus de 3
-        if ($client->getBateau()->contains($bateau) || count($client->getBateau()) > 3) {
+        if ($client->getBateau()->contains($bateau) || count($client->getBateau()) >= 3) {
             throw new \Exception("Impossible d'ajouter ce bateau", 1);
         }
 
